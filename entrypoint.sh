@@ -1,12 +1,12 @@
 #!/bin/sh
 
-REGION=$1
-CLUSTER_NAME=$2
-CMD=$3
+#REGION=$1
+#CLUSTER_NAME=$2
+#CMD=$3
 
 apk add --no-cache --update openssl curl ca-certificates
 pip install awscli
-aws eks update-kubeconfig --name $CLUSTER_NAME --region $REGION
+aws eks update-kubeconfig --name $CLUSTER_NAME --region $AWS_REGION
 
 KUBE_VERSION=$(curl -L -s https://dl.k8s.io/release/stable.txt)
 curl -o /usr/local/bin/kubectl  \
@@ -14,4 +14,5 @@ curl -o /usr/local/bin/kubectl  \
 chmod +x /usr/local/bin/kubectl
 rm -rf /var/cache/apk/*
 
-kubectl $CMD
+#kubectl $CMD
+kubectl $*
