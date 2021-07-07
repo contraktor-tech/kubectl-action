@@ -4,17 +4,6 @@ author: 'Robson Andrade<robson.andrade@contraktor.com.br>'
 branding:
   icon: 'terminal'
   color: 'blue'
-#inputs:
-  #REGION:
-    #description: 'AWS region'
-  #CLUSTER_NAME:
-    #description: 'K8s cluster name'
-  #CMD:
-    #describe: 'kubectl command to execute'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  #args:
-    #- ${{ inputs.REGION }}
-    #- ${{ inputs.CLUSTER_NAME }}
-    #- ${{ inputs.CMD }}
