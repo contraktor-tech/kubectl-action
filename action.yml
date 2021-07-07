@@ -12,3 +12,6 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    REGION: ${{ inputs.REGION }}
+    CLUSTER_NAME: ${{ inputs.CLUSTER_NAME }}
