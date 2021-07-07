@@ -9,9 +9,12 @@ inputs:
     description: 'AWS region'
   CLUSTER_NAME:
     description: 'K8s cluster name'
+  CMD:
+    describe: 'kubectl command to execute'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    REGION: ${{ inputs.REGION }}
-    CLUSTER_NAME: ${{ inputs.CLUSTER_NAME }}
+  args:
+    - ${{ inputs.REGION }}
+    - ${{ inputs.CLUSTER_NAME }}
+    - ${{ inputs.CMD }}
