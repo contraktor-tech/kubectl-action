@@ -1,9 +1,32 @@
 name: 'Kuberentes (k8s) cli - kubectl'
 description: 'GitHub Action for interacting with kubectl (k8s)'
 author: 'Robson Andrade<robson.andrade@contraktor.com.br>'
-branding:
-  icon: 'terminal'
-  color: 'blue'
+inputs:
+  cluster-name:
+    description: 'the cluster name'
+    require: true
+    default: 'ck_cluster'
+
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
+  steps:
+    - name: install python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: install awscli
+      shell: bash
+      run: pip install awscli
+
+    - name: get kubeconfig
+      shell: bash
+      run: aws eks update-kubeconfig --name ${{ inputs.cluster-name }}
+
+    - name: install kubectl
+      shell: bash
+      run: |
+        KUBE_VERSION=$(curl -L -s https://dl.k8s.io/release/stable.txt)
+        curl -o /usr/local/bin/kubectl  \
+          -L https://storage.googleapis.com/kubernetes-release/release/$KUBE_VERSION/bin/linux/amd64/kubectl
+        chmod +x /usr/local/bin/kubectl
