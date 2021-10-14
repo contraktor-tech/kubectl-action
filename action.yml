@@ -23,10 +23,4 @@ runs:
       shell: bash
       run: aws eks update-kubeconfig --name ${{ inputs.cluster-name }}
 
-    - name: install kubectl
-      shell: bash
-      run: |
-        KUBE_VERSION=$(curl -L -s https://dl.k8s.io/release/stable.txt)
-        curl -o /usr/local/bin/kubectl  \
-          -L https://storage.googleapis.com/kubernetes-release/release/$KUBE_VERSION/bin/linux/amd64/kubectl
-        chmod +x /usr/local/bin/kubectl
+    - uses: azure/setup-kubectl@v1
