@@ -5,7 +5,7 @@ inputs:
   cluster-name:
     description: 'the cluster name'
     require: true
-    default: 'ck_cluster'
+    default: 'ck_new'
 
 runs:
   using: 'composite'
@@ -23,4 +23,4 @@ runs:
       shell: bash
       run: aws eks update-kubeconfig --name ${{ inputs.cluster-name }}
 
-    - uses: azure/setup-kubectl@v1
+    - uses: azure/setup-kubectl@v2.1
