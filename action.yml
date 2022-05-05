@@ -17,10 +17,16 @@ runs:
 
     - name: install awscli
       shell: bash
-      run: pip install awscli
+      run: pip install -U awscli
 
     - name: get kubeconfig
       shell: bash
       run: aws eks update-kubeconfig --name ${{ inputs.cluster-name }}
 
-    - uses: azure/setup-kubectl@v1
+    - name: install kubectl fixed version
+      shell: bash
+      run: |
+        curl -sLO "https://dl.k8s.io/release/v1.23.0/bin/linux/amd64/kubectl"
+        chmod +x kubectl
+        mv kubectl /bin
+
