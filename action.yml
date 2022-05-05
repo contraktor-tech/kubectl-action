@@ -5,7 +5,7 @@ inputs:
   cluster-name:
     description: 'the cluster name'
     require: true
-    default: 'ck_cluster'
+    default: 'ck_new'
 
 runs:
   using: 'composite'
