@@ -1,4 +1,4 @@
-# KUBECTL ACTION ( DEPRECATED )
+# :x: KUBECTL ACTION ( DEPRECATED )
 
 Action para instalar o kubectl nas pipelines.
 
